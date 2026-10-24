@@ -691,7 +691,8 @@ private struct StableMemoryMap: UIViewRepresentable {
 
     final class Coordinator: NSObject, MKMapViewDelegate {
         var parent: StableMemoryMap
-        var signature = ""
+        var points: [MemoryMapPoint] = []
+        var pointsRevision = 0
         var framing = ""
         var applying = false
         var lastOverview = false
@@ -732,13 +733,14 @@ private struct StableMemoryMap: UIViewRepresentable {
         guard !coordinator.applying else { return }
         coordinator.applying = true
         defer { coordinator.applying = false }
-        let signature = points.map { "\($0.id):\($0.latitude):\($0.longitude)" }.joined(separator: "|")
-        if coordinator.signature != signature {
-            coordinator.signature = signature
+        // MKMapView lays out continuously while panning; compare values, don't rebuild strings.
+        if coordinator.points != points {
+            coordinator.points = points
+            coordinator.pointsRevision += 1
             map.removeAnnotations(map.annotations)
             map.addAnnotations(points.map(MemoryAnnotation.init))
         }
-        let framing = "\(signature):\(selectedID):\(overview):\(focusRevision):\(map.bounds.size):\(Int(bottomOcclusion)):\(Int(trailingOcclusion))"
+        let framing = "\(coordinator.pointsRevision):\(selectedID):\(overview):\(focusRevision):\(map.bounds.size):\(Int(bottomOcclusion)):\(Int(trailingOcclusion))"
         guard !points.isEmpty, map.bounds.width > 0, map.bounds.height > 0,
               coordinator.framing != framing else { return }
         let returningToSelected = coordinator.lastOverview && !overview

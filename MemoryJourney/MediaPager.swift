@@ -455,7 +455,8 @@ final class DayMediaPipeline {
             Task { @MainActor in
                 guard let self, self.token == generation, self.imageTokens[id] == requestToken, self.imageRequests[id] != nil else { return }
                 if value > (self.progress[id] ?? -1) { self.watchPhoto(id, generation: generation, requestToken: requestToken) }
-                self.progress[id] = value; self.onUpdate?(id); self.notifyPreparation()
+                // Cells never draw progress; the debounced preparation snapshot does.
+                self.progress[id] = value; self.notifyPreparation()
             }
         }
         let ratio = min(1, 3200 / CGFloat(max(asset.pixelWidth, asset.pixelHeight, 1)))
@@ -527,7 +528,7 @@ final class DayMediaPipeline {
             Task { @MainActor in
                 guard let self, self.token == generation, self.imageTokens[id] == requestToken else { return }
                 if value > (self.progress[id] ?? -1) { self.watchPhoto(id, generation: generation, requestToken: requestToken) }
-                self.progress[id] = value; self.onUpdate?(id); self.notifyPreparation()
+                self.progress[id] = value; self.notifyPreparation()
             }
         }
         imageRequests[id] = manager.requestImageDataAndOrientation(for: asset, options: options) { [weak self] data, _, _, info in
@@ -606,7 +607,7 @@ final class DayMediaPipeline {
             Task { @MainActor in
                 guard let self, self.token == generation, self.videoTokens[id] == requestToken else { return }
                 if value > (self.progress[id] ?? -1) { self.watchVideo(id, generation: generation, requestToken: requestToken) }
-                self.progress[id] = value; self.onUpdate?(id); self.notifyPreparation()
+                self.progress[id] = value; self.notifyPreparation()
             }
         }
         videoRequests[id] = manager.requestAVAsset(forVideo: asset, options: options) { [weak self] asset, mix, info in
@@ -1451,16 +1452,24 @@ final class VideoControlState: ObservableObject {
         }
     }
     private func refresh() {
+        // @Published emits on every assignment; the 5 Hz time observer should only
+        // invalidate the control card for values that actually changed.
         let length = player?.currentItem?.duration.seconds ?? 0
-        duration = length.isFinite && length > 0 ? length : 0
-        ready = player?.currentItem?.status == .readyToPlay && duration > 0
+        let nextDuration = length.isFinite && length > 0 ? length : 0
+        if duration != nextDuration { duration = nextDuration }
+        let nextReady = player?.currentItem?.status == .readyToPlay && duration > 0
+        if ready != nextReady { ready = nextReady }
         if !seeking {
             let time = player?.currentTime().seconds ?? 0
-            position = time.isFinite ? min(max(time, 0), duration) : 0
+            let nextPosition = time.isFinite ? min(max(time, 0), duration) : 0
+            if position != nextPosition { position = nextPosition }
         }
-        playing = player?.timeControlStatus == .playing
-        buffering = player?.timeControlStatus == .waitingToPlayAtSpecifiedRate
-        muted = pipeline?.muted ?? false
+        let nextPlaying = player?.timeControlStatus == .playing
+        if playing != nextPlaying { playing = nextPlaying }
+        let nextBuffering = player?.timeControlStatus == .waitingToPlayAtSpecifiedRate
+        if buffering != nextBuffering { buffering = nextBuffering }
+        let nextMuted = pipeline?.muted ?? false
+        if muted != nextMuted { muted = nextMuted }
     }
     func togglePlayback() {
         guard ready, let id, let pipeline else { return }

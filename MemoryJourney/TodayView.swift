@@ -34,7 +34,8 @@ struct TodayView: View {
     @State private var selectionFeedback = UISelectionFeedbackGenerator()
     @State private var boundaryFeedback = UIImpactFeedbackGenerator(style: .soft)
     @State private var yearFeedback = UIImpactFeedbackGenerator(style: .medium)
-    private var memories: [Memory] { collection.onThisDay(today) }
+    @State private var dayCache = OnThisDayCache()
+    private var memories: [Memory] { dayCache.memories(in: collection, on: today) }
     private var selected: Memory? { memories.first { $0.id == selectedID } ?? memories.first }
 
     private var usesNativeControls: Bool {

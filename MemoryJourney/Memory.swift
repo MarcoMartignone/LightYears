@@ -23,15 +23,15 @@ struct MemoryCollection: Sendable {
     }
     func onThisDay(_ date: Date, calendar: Calendar = .current) -> [Memory] {
         let target = calendar.dateComponents([.month, .day], from: date)
-        return memories.filter {
-            let parts = calendar.dateComponents([.month, .day], from: $0.date)
-            return parts.month == target.month && parts.day == target.day
+        // One calendar decomposition per memory; the sort compares precomputed years.
+        return memories.compactMap { memory -> (year: Int, memory: Memory)? in
+            let parts = calendar.dateComponents([.year, .month, .day], from: memory.date)
+            guard parts.month == target.month && parts.day == target.day else { return nil }
+            return (parts.year ?? 0, memory)
         }.sorted {
-            let leftYear = calendar.component(.year, from: $0.date)
-            let rightYear = calendar.component(.year, from: $1.date)
-            if leftYear != rightYear { return leftYear > rightYear }
-            return $0.date == $1.date ? $0.id < $1.id : $0.date < $1.date
-        }
+            if $0.year != $1.year { return $0.year > $1.year }
+            return $0.memory.date == $1.memory.date ? $0.memory.id < $1.memory.id : $0.memory.date < $1.memory.date
+        }.map(\.memory)
     }
     func journey(from memory: Memory) -> [Memory] {
         memories.filter {
@@ -59,6 +59,22 @@ struct MemoryCollection: Sendable {
             Memory(id: "coast", date: date(2, offset: 38), title: "Following the coast", connection: "By the water", scene: 0),
             Memory(id: "hills", date: date(2, offset: -12), title: "Beyond the hills", connection: "Open horizons", scene: 1)
         ])
+    }
+}
+
+/// SwiftUI reads the selected day many times per render; recompute only when the
+/// library snapshot or civil day changes. Unchanged arrays compare by shared storage.
+final class OnThisDayCache {
+    private var source: [Memory] = []
+    private var day: LocalDayKey?
+    private var result: [Memory] = []
+    func memories(in collection: MemoryCollection, on date: Date, calendar: Calendar = .current) -> [Memory] {
+        let key = LocalDayKey(date, calendar: calendar)
+        if key != day || collection.memories != source {
+            source = collection.memories; day = key
+            result = collection.onThisDay(date, calendar: calendar)
+        }
+        return result
     }
 }
 
