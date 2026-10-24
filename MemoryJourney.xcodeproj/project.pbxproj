@@ -1,0 +1,233 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+ B00000000000000000000031 = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+ B00000000000000000000032 = {isa = PBXBuildFile; fileRef = B00000000000000000000031; };
+ B00000000000000000000021 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDetails.swift; sourceTree = "<group>"; };
+ B00000000000000000000022 = {isa = PBXBuildFile; fileRef = B00000000000000000000021; };
+ B00000000000000000000011 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPager.swift; sourceTree = "<group>"; };
+ B00000000000000000000012 = {isa = PBXBuildFile; fileRef = B00000000000000000000011; };
+
+ B00000000000000000000041 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDiskCache.swift; sourceTree = "<group>"; };
+ B00000000000000000000042 = {isa = PBXBuildFile; fileRef = B00000000000000000000041; };
+/* Begin PBXBuildFile section */
+        C00000000000000000000001 = {isa = PBXBuildFile; fileRef = C00000000000000000000002; };
+		000000000000000000000065 /* MemoryJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000001 /* MemoryJourneyApp.swift */; };
+		000000000000000000000066 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000002 /* Memory.swift */; };
+		000000000000000000000067 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000003 /* TodayView.swift */; };
+		000000000000000000000068 /* SampleLandscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000004 /* SampleLandscape.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+        C00000000000000000000002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryYearGrid.swift; sourceTree = "<group>"; };
+		000000000000000000000001 /* MemoryJourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryJourneyApp.swift; sourceTree = "<group>"; };
+		000000000000000000000002 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		000000000000000000000003 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		000000000000000000000004 /* SampleLandscape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLandscape.swift; sourceTree = "<group>"; };
+		A00000000000000000000001 /* LightYears.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = LightYears.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A00000000000000000000006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000003 /* MemoryJourney */,
+				A00000000000000000000004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000003 /* MemoryJourney */ = {
+			isa = PBXGroup;
+			children = (C00000000000000000000002,B00000000000000000000041,B00000000000000000000031,B00000000000000000000021,B00000000000000000000011,
+				000000000000000000000001 /* MemoryJourneyApp.swift */,
+				000000000000000000000002 /* Memory.swift */,
+				000000000000000000000003 /* TodayView.swift */,
+				000000000000000000000004 /* SampleLandscape.swift */,
+			);
+			path = MemoryJourney;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000001 /* LightYears.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A00000000000000000000008 /* MemoryJourney */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0000000000000000000000A /* Build configuration list for PBXNativeTarget "MemoryJourney" */;
+			buildPhases = (
+				A00000000000000000000005 /* Sources */,
+				A00000000000000000000006 /* Frameworks */,
+				A00000000000000000000007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MemoryJourney;
+			productName = LightYears;
+			productReference = A00000000000000000000001 /* LightYears.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000009 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = A0000000000000000000000B /* Build configuration list for PBXProject "MemoryJourney" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A00000000000000000000002;
+			productRefGroup = A00000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A00000000000000000000008 /* MemoryJourney */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A00000000000000000000007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (B00000000000000000000032,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A00000000000000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (C00000000000000000000001,B00000000000000000000042,B00000000000000000000022,B00000000000000000000012,
+				000000000000000000000065 /* MemoryJourneyApp.swift in Sources */,
+				000000000000000000000066 /* Memory.swift in Sources */,
+				000000000000000000000067 /* TodayView.swift in Sources */,
+				000000000000000000000068 /* SampleLandscape.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A0000000000000000000000C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MemoryJourney/Info.plist;
+                INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Rediscover photos and videos from this day across the years. Your library stays on your device; nothing is uploaded or modified.";
+                INFOPLIST_KEY_PHPhotoLibraryPreventAutomaticLimitedAccessAlert = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; INFOPLIST_KEY_CFBundleDisplayName = LightYears;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.memoryjourney.prototype;
+				PRODUCT_NAME = LightYears;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A0000000000000000000000D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MemoryJourney/Info.plist;
+                INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Rediscover photos and videos from this day across the years. Your library stays on your device; nothing is uploaded or modified.";
+                INFOPLIST_KEY_PHPhotoLibraryPreventAutomaticLimitedAccessAlert = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; INFOPLIST_KEY_CFBundleDisplayName = LightYears;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.memoryjourney.prototype;
+				PRODUCT_NAME = LightYears;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		A0000000000000000000000E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+			};
+			name = Debug;
+		};
+		A0000000000000000000000F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0000000000000000000000A /* Build configuration list for PBXNativeTarget "MemoryJourney" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0000000000000000000000C /* Debug */,
+				A0000000000000000000000D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0000000000000000000000B /* Build configuration list for PBXProject "MemoryJourney" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0000000000000000000000E /* Debug */,
+				A0000000000000000000000F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000009 /* Project object */;
+}
